@@ -1,6 +1,7 @@
 package nl.cwts.publicationclassification.run;
 
 import java.util.Random;
+import java.util.stream.IntStream;
 
 import nl.cwts.networkanalysis.Clustering;
 import nl.cwts.networkanalysis.LeidenAlgorithm;
@@ -256,7 +257,7 @@ public class PublicationClassificationCreator
         else
             citNetwork = DatabaseIO.readNetwork(server, database, pubTable, citLinkTable);
         int nPubs = citNetwork.getNNodes();
-        int[] pub = new int[citNetwork.getNNodes()];
+        int[] pub = IntStream.range(0, citNetwork.getNNodes()).toArray();
         System.out.println("Finished!");
         System.out.println("Reading citation network from " + ((useFiles) ? "file" : "database") + " took " + formatDuration((System.currentTimeMillis() - startTimeCitNetwork) / 1000) + ".");
         System.out.println("Citation network:");
